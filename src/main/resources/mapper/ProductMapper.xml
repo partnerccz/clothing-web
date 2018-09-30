@@ -210,7 +210,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectProductPage" resultType="com.clothing.web.model.Product">
+  <select id="selectProductPage" resultType="map">
     SELECT
     <include refid="Base_Column_List" />
 	FROM b_product

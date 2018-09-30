@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * 描述:
  * 商品实现接口
@@ -32,7 +34,7 @@ public class ProductController {
     public ResponseEntity getProductPage(Integer pageSize, Integer pageNum) {
         try {
             log.info("【商品】 分页参数pageSize={},pageNum={}", pageSize, pageNum);
-            Page<Product> products = productService.selectProductPage(pageSize, pageNum);
+            Page<Map> products = productService.selectProductPage(pageSize, pageNum);
             PageInfo pageInfo = new PageInfo(products);
             log.info("【商品】 返回接口pageInfo={}", pageInfo);
             return ResponseEntity.ok(pageInfo);

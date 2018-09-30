@@ -4,6 +4,8 @@ import com.clothing.web.model.Product;
 import com.github.pagehelper.Page;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 @Repository
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,5 +20,5 @@ public interface ProductMapper {
 
     int updateByPrimaryKey(Product record);
 
-    Page<Product> selectProductPage();
+    Page<Map> selectProductPage();
 }

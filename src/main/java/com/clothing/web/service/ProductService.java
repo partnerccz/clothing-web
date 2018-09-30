@@ -3,6 +3,8 @@ package com.clothing.web.service;
 import com.clothing.web.model.Product;
 import com.github.pagehelper.Page;
 
+import java.util.Map;
+
 /**
  * 描述:
  * 商品接口
@@ -17,5 +19,5 @@ public interface ProductService {
      * @param pageSize
      * @return
      */
-    Page<Product> selectProductPage(Integer pageSize,Integer pageNum);
+    Page<Map> selectProductPage(Integer pageSize, Integer pageNum);
 }

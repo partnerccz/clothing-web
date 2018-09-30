@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 /**
  * 描述:
  * 商品接口实现类
@@ -26,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
 
     @Override
-    public Page<Product> selectProductPage(Integer pageSize,Integer pageNum) {
+    public Page<Map> selectProductPage(Integer pageSize, Integer pageNum) {
         if (VerifyData.intIsNotNullOrZero(pageNum)) {
             pageNum = PageConstant.PAGE_NUM;
         }
