@@ -214,6 +214,7 @@
  SELECT
 	p.id AS pId,
 	p.`name` AS pName,
+	p.img,
 	p.type AS pType,
 	p.brand AS brand,
 	p.measure_unit,
