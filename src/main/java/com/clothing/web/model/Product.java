@@ -19,10 +19,6 @@ public class Product {
 
     private Integer status;
 
-    private Integer expireTime;
-
-    private Date freshExpireTime;
-
     private String img;
 
     private String des;
@@ -99,22 +95,6 @@ public class Product {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Integer getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Integer expireTime) {
-        this.expireTime = expireTime;
-    }
-
-    public Date getFreshExpireTime() {
-        return freshExpireTime;
-    }
-
-    public void setFreshExpireTime(Date freshExpireTime) {
-        this.freshExpireTime = freshExpireTime;
     }
 
     public String getImg() {

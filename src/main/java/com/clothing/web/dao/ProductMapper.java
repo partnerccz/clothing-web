@@ -18,9 +18,5 @@ public interface ProductMapper {
 
     int updateByPrimaryKey(Product record);
 
-    /**
-     * 获取商品分页数据
-     * @return
-     */
     Page<Product> selectProductPage();
 }

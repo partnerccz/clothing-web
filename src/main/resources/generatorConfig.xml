@@ -134,11 +134,11 @@
                <!--enableDeleteByExample="false" enableSelectByExample="false"-->
                <!--enableUpdateByExample="false">-->
         <!--</table>-->
-        <!--<table schema="clothing" tableName="b_product"-->
-               <!--domainObjectName="Product" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
-        <!--</table>-->
+        <table schema="clothing" tableName="b_product"
+               domainObjectName="Product" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
         <!--<table schema="clothing" tableName="b_product_img"-->
                <!--domainObjectName="ProductImg" enableCountByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false"-->
@@ -184,10 +184,10 @@
                <!--enableDeleteByExample="false" enableSelectByExample="false"-->
                <!--enableUpdateByExample="false">-->
         <!--</table>-->
-        <table schema="clothing" tableName="b_banner"
+     <!--   <table schema="clothing" tableName="b_banner"
                domainObjectName="Banner" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>
