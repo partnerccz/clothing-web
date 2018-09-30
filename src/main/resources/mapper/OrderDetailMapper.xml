@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.web.dao.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.clothing.web.model.OrderDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_standard_id" jdbcType="INTEGER" property="productStandardId" />
+    <result column="measure_unit" jdbcType="VARCHAR" property="measureUnit" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+    <result column="sell_price" jdbcType="DECIMAL" property="sellPrice" />
+    <result column="send_goods_pay" jdbcType="DECIMAL" property="sendGoodsPay" />
+    <result column="total_pay" jdbcType="DECIMAL" property="totalPay" />
+    <result column="buy_remark" jdbcType="VARCHAR" property="buyRemark" />
+    <result column="send_goods_time" jdbcType="TIMESTAMP" property="sendGoodsTime" />
+    <result column="take_goods_time" jdbcType="TIMESTAMP" property="takeGoodsTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, product_id, product_standard_id, measure_unit, num, original_price, sell_price, 
+    send_goods_pay, total_pay, buy_remark, send_goods_time, take_goods_time, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clothing.web.model.OrderDetail">
+    insert into b_order_detail (id, code, product_id, 
+      product_standard_id, measure_unit, num, 
+      original_price, sell_price, send_goods_pay, 
+      total_pay, buy_remark, send_goods_time, 
+      take_goods_time, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{productStandardId,jdbcType=INTEGER}, #{measureUnit,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{originalPrice,jdbcType=DECIMAL}, #{sellPrice,jdbcType=DECIMAL}, #{sendGoodsPay,jdbcType=DECIMAL}, 
+      #{totalPay,jdbcType=DECIMAL}, #{buyRemark,jdbcType=VARCHAR}, #{sendGoodsTime,jdbcType=TIMESTAMP}, 
+      #{takeGoodsTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothing.web.model.OrderDetail">
+    insert into b_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productStandardId != null">
+        product_standard_id,
+      </if>
+      <if test="measureUnit != null">
+        measure_unit,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="originalPrice != null">
+        original_price,
+      </if>
+      <if test="sellPrice != null">
+        sell_price,
+      </if>
+      <if test="sendGoodsPay != null">
+        send_goods_pay,
+      </if>
+      <if test="totalPay != null">
+        total_pay,
+      </if>
+      <if test="buyRemark != null">
+        buy_remark,
+      </if>
+      <if test="sendGoodsTime != null">
+        send_goods_time,
+      </if>
+      <if test="takeGoodsTime != null">
+        take_goods_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productStandardId != null">
+        #{productStandardId,jdbcType=INTEGER},
+      </if>
+      <if test="measureUnit != null">
+        #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="originalPrice != null">
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellPrice != null">
+        #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodsPay != null">
+        #{sendGoodsPay,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPay != null">
+        #{totalPay,jdbcType=DECIMAL},
+      </if>
+      <if test="buyRemark != null">
+        #{buyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sendGoodsTime != null">
+        #{sendGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="takeGoodsTime != null">
+        #{takeGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.OrderDetail">
+    update b_order_detail
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productStandardId != null">
+        product_standard_id = #{productStandardId,jdbcType=INTEGER},
+      </if>
+      <if test="measureUnit != null">
+        measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="originalPrice != null">
+        original_price = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellPrice != null">
+        sell_price = #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodsPay != null">
+        send_goods_pay = #{sendGoodsPay,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPay != null">
+        total_pay = #{totalPay,jdbcType=DECIMAL},
+      </if>
+      <if test="buyRemark != null">
+        buy_remark = #{buyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sendGoodsTime != null">
+        send_goods_time = #{sendGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="takeGoodsTime != null">
+        take_goods_time = #{takeGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.OrderDetail">
+    update b_order_detail
+    set code = #{code,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_standard_id = #{productStandardId,jdbcType=INTEGER},
+      measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      sell_price = #{sellPrice,jdbcType=DECIMAL},
+      send_goods_pay = #{sendGoodsPay,jdbcType=DECIMAL},
+      total_pay = #{totalPay,jdbcType=DECIMAL},
+      buy_remark = #{buyRemark,jdbcType=VARCHAR},
+      send_goods_time = #{sendGoodsTime,jdbcType=TIMESTAMP},
+      take_goods_time = #{takeGoodsTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

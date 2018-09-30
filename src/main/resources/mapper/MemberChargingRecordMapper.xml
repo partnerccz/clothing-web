@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.web.dao.MemberChargingRecordMapper">
+  <resultMap id="BaseResultMap" type="com.clothing.web.model.MemberChargingRecord">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MID" jdbcType="INTEGER" property="mid" />
+    <result column="NUMBERS" jdbcType="VARCHAR" property="numbers" />
+    <result column="ACCRUAL" jdbcType="DOUBLE" property="accrual" />
+    <result column="ODD_NUMBERS" jdbcType="VARCHAR" property="oddNumbers" />
+    <result column="TRADING_TYPE" jdbcType="INTEGER" property="tradingType" />
+    <result column="TRADING_TIME" jdbcType="TIMESTAMP" property="tradingTime" />
+    <result column="TALLY_TYPE" jdbcType="INTEGER" property="tallyType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MID, NUMBERS, ACCRUAL, ODD_NUMBERS, TRADING_TYPE, TRADING_TIME, TALLY_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_member_charging_record
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_member_charging_record
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clothing.web.model.MemberChargingRecord">
+    insert into b_member_charging_record (ID, MID, NUMBERS, 
+      ACCRUAL, ODD_NUMBERS, TRADING_TYPE, 
+      TRADING_TIME, TALLY_TYPE)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{numbers,jdbcType=VARCHAR}, 
+      #{accrual,jdbcType=DOUBLE}, #{oddNumbers,jdbcType=VARCHAR}, #{tradingType,jdbcType=INTEGER}, 
+      #{tradingTime,jdbcType=TIMESTAMP}, #{tallyType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothing.web.model.MemberChargingRecord">
+    insert into b_member_charging_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mid != null">
+        MID,
+      </if>
+      <if test="numbers != null">
+        NUMBERS,
+      </if>
+      <if test="accrual != null">
+        ACCRUAL,
+      </if>
+      <if test="oddNumbers != null">
+        ODD_NUMBERS,
+      </if>
+      <if test="tradingType != null">
+        TRADING_TYPE,
+      </if>
+      <if test="tradingTime != null">
+        TRADING_TIME,
+      </if>
+      <if test="tallyType != null">
+        TALLY_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="numbers != null">
+        #{numbers,jdbcType=VARCHAR},
+      </if>
+      <if test="accrual != null">
+        #{accrual,jdbcType=DOUBLE},
+      </if>
+      <if test="oddNumbers != null">
+        #{oddNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="tradingType != null">
+        #{tradingType,jdbcType=INTEGER},
+      </if>
+      <if test="tradingTime != null">
+        #{tradingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tallyType != null">
+        #{tallyType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.MemberChargingRecord">
+    update b_member_charging_record
+    <set>
+      <if test="mid != null">
+        MID = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="numbers != null">
+        NUMBERS = #{numbers,jdbcType=VARCHAR},
+      </if>
+      <if test="accrual != null">
+        ACCRUAL = #{accrual,jdbcType=DOUBLE},
+      </if>
+      <if test="oddNumbers != null">
+        ODD_NUMBERS = #{oddNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="tradingType != null">
+        TRADING_TYPE = #{tradingType,jdbcType=INTEGER},
+      </if>
+      <if test="tradingTime != null">
+        TRADING_TIME = #{tradingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tallyType != null">
+        TALLY_TYPE = #{tallyType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.MemberChargingRecord">
+    update b_member_charging_record
+    set MID = #{mid,jdbcType=INTEGER},
+      NUMBERS = #{numbers,jdbcType=VARCHAR},
+      ACCRUAL = #{accrual,jdbcType=DOUBLE},
+      ODD_NUMBERS = #{oddNumbers,jdbcType=VARCHAR},
+      TRADING_TYPE = #{tradingType,jdbcType=INTEGER},
+      TRADING_TIME = #{tradingTime,jdbcType=TIMESTAMP},
+      TALLY_TYPE = #{tallyType,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

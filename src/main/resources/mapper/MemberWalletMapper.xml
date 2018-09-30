@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.web.dao.MemberWalletMapper">
+  <resultMap id="BaseResultMap" type="com.clothing.web.model.MemberWallet">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MID" jdbcType="INTEGER" property="mid" />
+    <result column="ACCRUAL" jdbcType="DOUBLE" property="accrual" />
+    <result column="CURRENT" jdbcType="DOUBLE" property="current" />
+    <result column="LAST_BALANCE" jdbcType="DOUBLE" property="lastBalance" />
+    <result column="CHANGE_TIME" jdbcType="TIMESTAMP" property="changeTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MID, ACCRUAL, CURRENT, LAST_BALANCE, CHANGE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_member_wallet
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_member_wallet
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clothing.web.model.MemberWallet">
+    insert into b_member_wallet (ID, MID, ACCRUAL, 
+      CURRENT, LAST_BALANCE, CHANGE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{accrual,jdbcType=DOUBLE}, 
+      #{current,jdbcType=DOUBLE}, #{lastBalance,jdbcType=DOUBLE}, #{changeTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothing.web.model.MemberWallet">
+    insert into b_member_wallet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="mid != null">
+        MID,
+      </if>
+      <if test="accrual != null">
+        ACCRUAL,
+      </if>
+      <if test="current != null">
+        CURRENT,
+      </if>
+      <if test="lastBalance != null">
+        LAST_BALANCE,
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="accrual != null">
+        #{accrual,jdbcType=DOUBLE},
+      </if>
+      <if test="current != null">
+        #{current,jdbcType=DOUBLE},
+      </if>
+      <if test="lastBalance != null">
+        #{lastBalance,jdbcType=DOUBLE},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.MemberWallet">
+    update b_member_wallet
+    <set>
+      <if test="mid != null">
+        MID = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="accrual != null">
+        ACCRUAL = #{accrual,jdbcType=DOUBLE},
+      </if>
+      <if test="current != null">
+        CURRENT = #{current,jdbcType=DOUBLE},
+      </if>
+      <if test="lastBalance != null">
+        LAST_BALANCE = #{lastBalance,jdbcType=DOUBLE},
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.MemberWallet">
+    update b_member_wallet
+    set MID = #{mid,jdbcType=INTEGER},
+      ACCRUAL = #{accrual,jdbcType=DOUBLE},
+      CURRENT = #{current,jdbcType=DOUBLE},
+      LAST_BALANCE = #{lastBalance,jdbcType=DOUBLE},
+      CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

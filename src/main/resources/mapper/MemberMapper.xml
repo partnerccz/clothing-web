@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.web.dao.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.clothing.web.model.Member">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="OPENID" jdbcType="VARCHAR" property="openid" />
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+    <result column="HEAD_IMG" jdbcType="VARCHAR" property="headImg" />
+    <result column="M_TYPE" jdbcType="INTEGER" property="mType" />
+    <result column="M_GROUP" jdbcType="INTEGER" property="mGroup" />
+    <result column="ISRECEIVE" jdbcType="INTEGER" property="isreceive" />
+    <result column="ISWITHDRAW" jdbcType="INTEGER" property="iswithdraw" />
+    <result column="ISBLOCK" jdbcType="INTEGER" property="isblock" />
+    <result column="SEX" jdbcType="INTEGER" property="sex" />
+    <result column="REGISTTIME" jdbcType="TIMESTAMP" property="registtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, OPENID, NICK_NAME, HEAD_IMG, M_TYPE, M_GROUP, ISRECEIVE, ISWITHDRAW, ISBLOCK, 
+    SEX, REGISTTIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_member
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_member
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clothing.web.model.Member">
+    insert into b_member (ID, OPENID, NICK_NAME, 
+      HEAD_IMG, M_TYPE, M_GROUP, 
+      ISRECEIVE, ISWITHDRAW, ISBLOCK, 
+      SEX, REGISTTIME)
+    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{headImg,jdbcType=VARCHAR}, #{mType,jdbcType=INTEGER}, #{mGroup,jdbcType=INTEGER}, 
+      #{isreceive,jdbcType=INTEGER}, #{iswithdraw,jdbcType=INTEGER}, #{isblock,jdbcType=INTEGER}, 
+      #{sex,jdbcType=INTEGER}, #{registtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothing.web.model.Member">
+    insert into b_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="openid != null">
+        OPENID,
+      </if>
+      <if test="nickName != null">
+        NICK_NAME,
+      </if>
+      <if test="headImg != null">
+        HEAD_IMG,
+      </if>
+      <if test="mType != null">
+        M_TYPE,
+      </if>
+      <if test="mGroup != null">
+        M_GROUP,
+      </if>
+      <if test="isreceive != null">
+        ISRECEIVE,
+      </if>
+      <if test="iswithdraw != null">
+        ISWITHDRAW,
+      </if>
+      <if test="isblock != null">
+        ISBLOCK,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="registtime != null">
+        REGISTTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="mType != null">
+        #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="mGroup != null">
+        #{mGroup,jdbcType=INTEGER},
+      </if>
+      <if test="isreceive != null">
+        #{isreceive,jdbcType=INTEGER},
+      </if>
+      <if test="iswithdraw != null">
+        #{iswithdraw,jdbcType=INTEGER},
+      </if>
+      <if test="isblock != null">
+        #{isblock,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="registtime != null">
+        #{registtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.Member">
+    update b_member
+    <set>
+      <if test="openid != null">
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        HEAD_IMG = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="mType != null">
+        M_TYPE = #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="mGroup != null">
+        M_GROUP = #{mGroup,jdbcType=INTEGER},
+      </if>
+      <if test="isreceive != null">
+        ISRECEIVE = #{isreceive,jdbcType=INTEGER},
+      </if>
+      <if test="iswithdraw != null">
+        ISWITHDRAW = #{iswithdraw,jdbcType=INTEGER},
+      </if>
+      <if test="isblock != null">
+        ISBLOCK = #{isblock,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="registtime != null">
+        REGISTTIME = #{registtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.Member">
+    update b_member
+    set OPENID = #{openid,jdbcType=VARCHAR},
+      NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      HEAD_IMG = #{headImg,jdbcType=VARCHAR},
+      M_TYPE = #{mType,jdbcType=INTEGER},
+      M_GROUP = #{mGroup,jdbcType=INTEGER},
+      ISRECEIVE = #{isreceive,jdbcType=INTEGER},
+      ISWITHDRAW = #{iswithdraw,jdbcType=INTEGER},
+      ISBLOCK = #{isblock,jdbcType=INTEGER},
+      SEX = #{sex,jdbcType=INTEGER},
+      REGISTTIME = #{registtime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
