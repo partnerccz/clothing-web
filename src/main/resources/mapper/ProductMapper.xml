@@ -23,7 +23,7 @@
     week_sell_num, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from b_product
     where id = #{id,jdbcType=INTEGER}
@@ -211,9 +211,37 @@
   </update>
 
   <select id="selectProductPage" resultType="map">
-    SELECT
-    <include refid="Base_Column_List" />
-	FROM b_product
-    ORDER BY store_way DESC
+ SELECT
+	p.id AS pId,
+	p.`name` AS pName,
+	p.type AS pType,
+	p.brand AS brand,
+	p.measure_unit,
+	p.des,
+	p.store_way,
+	p.total_sell_num,
+	p.week_sell_num,
+	ps.id AS psId,
+	ps.`name` AS psName,
+	ps.sub_title,
+	ps.original_price,
+	ps.sell_price,
+	ps.cost_price,
+	ps.shipping_fee,
+	ps.carton_weight,
+	ps.purchase_quantity_min,
+	ps.purchase_quantity_max,
+	ps.buy_start_time,
+	ps.buy_start_time,
+	ps.sort_purchase,
+	ps.`status` AS psStatue
+FROM
+	b_product p
+INNER JOIN b_product_standard ps ON p.id = ps.product_id
+WHERE
+	1 = 1
+AND ps.is_default = 1
+ORDER BY
+	store_way DESC
   </select>
 </mapper>
