@@ -1,7 +1,10 @@
 package com.clothing.web.dao;
 
 import com.clothing.web.model.Product;
+import com.github.pagehelper.Page;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,10 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
+    /**
+     * 获取商品分页数据
+     * @return
+     */
+    Page<Product> selectProductPage();
 }

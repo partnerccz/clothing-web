@@ -30,6 +30,12 @@
     from b_product
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectProductPage" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+	FROM b_product
+    ORDER BY store_way DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_product
     where id = #{id,jdbcType=INTEGER}
