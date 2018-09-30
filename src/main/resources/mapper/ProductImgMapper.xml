@@ -19,6 +19,20 @@
     from b_product_img
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectProductImgByProductId" parameterType="java.lang.Integer" resultType="map">
+   SELECT
+	id,
+	product_id,
+	type,
+	sort,
+	img_url,
+	create_time,
+	update_time
+  FROM
+      b_product_img
+  WHERE
+      product_id = #{productId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_product_img
     where id = #{id,jdbcType=INTEGER}
