@@ -134,11 +134,11 @@
                <!--enableDeleteByExample="false" enableSelectByExample="false"-->
                <!--enableUpdateByExample="false">-->
         <!--</table>-->
-        <table schema="clothing" tableName="b_product"
-               domainObjectName="Product" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>
+        <!--<table schema="clothing" tableName="b_product"-->
+               <!--domainObjectName="Product" enableCountByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false">-->
+        <!--</table>-->
         <!--<table schema="clothing" tableName="b_product_img"-->
                <!--domainObjectName="ProductImg" enableCountByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false"-->
@@ -189,5 +189,25 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>-->
+           <!--<table schema="clothing" tableName="b_cart_product"-->
+               <!--domainObjectName="CartProduct" enableCountByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false">-->
+        <!--</table>-->
+        <table schema="clothing" tableName="b_product_standard_param"
+        domainObjectName="ProductStandardParam" enableCountByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        enableUpdateByExample="false">
+        </table>
+        <table schema="clothing" tableName="b_standard_size"
+        domainObjectName="StandardSize" enableCountByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        enableUpdateByExample="false">
+        </table>
+        <table schema="clothing" tableName="b_standard_color"
+        domainObjectName="StandardColor" enableCountByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false"
+        enableUpdateByExample="false">
+        </table>
     </context>
 </generatorConfiguration>

@@ -31,6 +31,32 @@
     sort_purchase, sort_sold_out, sort_split, stock, status, is_default, purchaser_uid, 
     create_time, update_time
   </sql>
+  <select id="selectProductDetailById" parameterType="java.lang.Integer" resultType="java.util.Map">
+    SELECT
+      p.id AS pId,
+      p.`name` as pName,
+      p.type as type,
+      p.brand as brand,
+      p.des as des,
+      p.total_sell_num as total_sell_num,
+      p.week_sell_num as week_sell_num,
+      ps.sell_price as sell_price,
+      ps.original_price as original_price,
+      ps.shipping_fee as shipping_fee,
+      ps.carton_weight as carton_weight,
+      ps.purchase_quantity_min as purchase_quantity_min,
+      ps.purchase_quantity_max as purchase_quantity_max,
+      ps.buy_start_time as buy_start_time,
+      ps.buy_end_time as buy_end_time,
+      ps.sub_title as sub_title,
+      ps.`name` as psName,
+      ps.id as psId
+  FROM
+      b_product p
+  LEFT JOIN b_product_standard ps ON p.id = ps.product_id
+  WHERE 1=1
+  AND ps.id = #{psId}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

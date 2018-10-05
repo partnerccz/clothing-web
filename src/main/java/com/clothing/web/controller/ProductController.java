@@ -1,10 +1,13 @@
 package com.clothing.web.controller;
 
+import com.clothing.web.constant.ResponseResultConstant;
 import com.clothing.web.model.Product;
 import com.clothing.web.service.ProductService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +30,8 @@ import java.util.Map;
 @RequestMapping("/product")
 public class ProductController {
 
+    private Logger log = LoggerFactory.getLogger(ProductController.class);
+
     @Autowired
     private ProductService productService;
 
@@ -41,7 +46,7 @@ public class ProductController {
         } catch (Exception e) {
             e.printStackTrace();
             log.info("【商品】 获取商品分页信息异常={}", e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseResultConstant.EXCEPTION);
         }
     }
 }
