@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.web.dao.ProductStandardParamMapper">
+  <resultMap id="BaseResultMap" type="com.clothing.web.model.ProductStandardParam">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_standard_id" jdbcType="INTEGER" property="productStandardId" />
+    <result column="standard_color_id" jdbcType="INTEGER" property="standardColorId" />
+    <result column="standard_size_id" jdbcType="INTEGER" property="standardSizeId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_standard_id, standard_color_id, standard_size_id, create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_product_standard_param
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_product_standard_param
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clothing.web.model.ProductStandardParam">
+    insert into b_product_standard_param (id, product_standard_id, standard_color_id, 
+      standard_size_id, create_time, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{productStandardId,jdbcType=INTEGER}, #{standardColorId,jdbcType=INTEGER}, 
+      #{standardSizeId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothing.web.model.ProductStandardParam">
+    insert into b_product_standard_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productStandardId != null">
+        product_standard_id,
+      </if>
+      <if test="standardColorId != null">
+        standard_color_id,
+      </if>
+      <if test="standardSizeId != null">
+        standard_size_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productStandardId != null">
+        #{productStandardId,jdbcType=INTEGER},
+      </if>
+      <if test="standardColorId != null">
+        #{standardColorId,jdbcType=INTEGER},
+      </if>
+      <if test="standardSizeId != null">
+        #{standardSizeId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.ProductStandardParam">
+    update b_product_standard_param
+    <set>
+      <if test="productStandardId != null">
+        product_standard_id = #{productStandardId,jdbcType=INTEGER},
+      </if>
+      <if test="standardColorId != null">
+        standard_color_id = #{standardColorId,jdbcType=INTEGER},
+      </if>
+      <if test="standardSizeId != null">
+        standard_size_id = #{standardSizeId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.ProductStandardParam">
+    update b_product_standard_param
+    set product_standard_id = #{productStandardId,jdbcType=INTEGER},
+      standard_color_id = #{standardColorId,jdbcType=INTEGER},
+      standard_size_id = #{standardSizeId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

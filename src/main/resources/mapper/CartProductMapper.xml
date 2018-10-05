@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.web.dao.CartProductMapper">
+  <resultMap id="BaseResultMap" type="com.clothing.web.model.CartProduct">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="product_standard_id" jdbcType="INTEGER" property="productStandardId" />
+    <result column="buy_num" jdbcType="INTEGER" property="buyNum" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, member_id, product_standard_id, buy_num, remark, create_time, update_time, is_delete
+  </sql>
+  <select id="selectCartProductByMid" parameterType="java.lang.Integer" resultType="java.util.Map">
+    SELECT
+    cp.id as cart_id,
+    cp.buy_num as buy_num,
+    cp.create_time as create_time,
+    ps.id as product_standard_id,
+    ps.`name` as product_standard_name,
+    ps.sub_title as sub_title,
+    ps.sell_price as sell_price,
+    ps.shipping_fee as shipping_fee,
+    ps.purchase_quantity_min as purchase_quantity_min,
+    ps.purchase_quantity_max as purchase_quantity_max,
+    (SELECT p.img from b_product p WHERE p.id = ps.product_id) as default_img
+    FROM
+    b_cart_product cp
+    INNER JOIN b_product_standard ps on cp.product_standard_id = ps.id
+    WHERE 1=1
+    AND member_id = #{memberId}
+    ORDER BY cp.create_time DESC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_cart_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_cart_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clothing.web.model.CartProduct">
+    insert into b_cart_product (id, member_id, product_standard_id, 
+      buy_num, remark, create_time, 
+      update_time, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{productStandardId,jdbcType=INTEGER}, 
+      #{buyNum,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothing.web.model.CartProduct">
+    insert into b_cart_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="productStandardId != null">
+        product_standard_id,
+      </if>
+      <if test="buyNum != null">
+        buy_num,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="productStandardId != null">
+        #{productStandardId,jdbcType=INTEGER},
+      </if>
+      <if test="buyNum != null">
+        #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.CartProduct">
+    update b_cart_product
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="productStandardId != null">
+        product_standard_id = #{productStandardId,jdbcType=INTEGER},
+      </if>
+      <if test="buyNum != null">
+        buy_num = #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.CartProduct">
+    update b_cart_product
+    set member_id = #{memberId,jdbcType=INTEGER},
+      product_standard_id = #{productStandardId,jdbcType=INTEGER},
+      buy_num = #{buyNum,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
