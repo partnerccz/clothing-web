@@ -7,8 +7,7 @@ package com.clothing.web.enums;
  */
 public enum EnumDelete {
     NOT_DELETE(0, "未删除"),
-    IS_DELETE(1, "删除"),
-    ;
+    IS_DELETE(1, "删除"),;
     private Integer statusCode;
     private String statusStr;
 

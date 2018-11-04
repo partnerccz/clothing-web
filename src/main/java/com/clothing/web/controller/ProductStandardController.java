@@ -29,7 +29,6 @@ public class ProductStandardController {
     private ProductStandardService productStandardService;
 
     /**
-     *
      * @param psId
      * @return
      */
@@ -41,7 +40,7 @@ public class ProductStandardController {
             return ResponseEntity.ok(map);
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("【获取商品规格】 异常信息={}",e.getMessage());
+            log.error("【获取商品规格】 异常信息={}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseResultConstant.EXCEPTION);
         }
     }

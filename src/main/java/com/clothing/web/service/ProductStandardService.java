@@ -10,6 +10,7 @@ import java.util.Map;
 public interface ProductStandardService {
     /**
      * 根据ID查询商品详情
+     *
      * @param psId
      * @return
      */

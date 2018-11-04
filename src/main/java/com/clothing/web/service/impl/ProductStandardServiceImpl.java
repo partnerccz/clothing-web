@@ -19,6 +19,7 @@ public class ProductStandardServiceImpl implements ProductStandardService {
 
     @Autowired
     private ProductStandardMapper productStandardMapper;
+
     @Override
     public Map selectProductDetailById(Integer psId) {
         return productStandardMapper.selectProductDetailById(psId);

@@ -25,8 +25,9 @@ public interface CartProductService {
 
     /**
      * 根据用户Id查询购物车信息
+     *
      * @param memberId 用户ID
      * @return
      */
-    Page<Map> selectCartProductByMid(Integer memberId,Integer pageNum,Integer pageSize);
+    Page<Map> selectCartProductByMid(Integer memberId, Integer pageNum, Integer pageSize);
 }

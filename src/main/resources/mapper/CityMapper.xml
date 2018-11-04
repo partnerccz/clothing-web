@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clothing.web.dao.CityMapper">
-  <resultMap id="BaseResultMap" type="com.clothing.web.model.City">
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="EN_NAME" jdbcType="VARCHAR" property="enName" />
-    <result column="CN_NAME" jdbcType="VARCHAR" property="cnName" />
-    <result column="PROVINCE" jdbcType="BIGINT" property="province" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, EN_NAME, CN_NAME, PROVINCE
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from c_city
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from c_city
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.clothing.web.model.City">
-    insert into c_city (ID, EN_NAME, CN_NAME, 
-      PROVINCE)
-    values (#{id,jdbcType=INTEGER}, #{enName,jdbcType=VARCHAR}, #{cnName,jdbcType=VARCHAR}, 
-      #{province,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.clothing.web.model.City">
-    insert into c_city
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="enName != null">
-        EN_NAME,
-      </if>
-      <if test="cnName != null">
-        CN_NAME,
-      </if>
-      <if test="province != null">
-        PROVINCE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="enName != null">
-        #{enName,jdbcType=VARCHAR},
-      </if>
-      <if test="cnName != null">
-        #{cnName,jdbcType=VARCHAR},
-      </if>
-      <if test="province != null">
-        #{province,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.City">
-    update c_city
-    <set>
-      <if test="enName != null">
-        EN_NAME = #{enName,jdbcType=VARCHAR},
-      </if>
-      <if test="cnName != null">
+    <resultMap id="BaseResultMap" type="com.clothing.web.model.City">
+        <id column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="EN_NAME" jdbcType="VARCHAR" property="enName"/>
+        <result column="CN_NAME" jdbcType="VARCHAR" property="cnName"/>
+        <result column="PROVINCE" jdbcType="BIGINT" property="province"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, EN_NAME, CN_NAME, PROVINCE
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from c_city
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from c_city
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.clothing.web.model.City">
+        insert into c_city (ID, EN_NAME, CN_NAME,
+        PROVINCE)
+        values (#{id,jdbcType=INTEGER}, #{enName,jdbcType=VARCHAR}, #{cnName,jdbcType=VARCHAR},
+        #{province,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.clothing.web.model.City">
+        insert into c_city
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="enName != null">
+                EN_NAME,
+            </if>
+            <if test="cnName != null">
+                CN_NAME,
+            </if>
+            <if test="province != null">
+                PROVINCE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="enName != null">
+                #{enName,jdbcType=VARCHAR},
+            </if>
+            <if test="cnName != null">
+                #{cnName,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.City">
+        update c_city
+        <set>
+            <if test="enName != null">
+                EN_NAME = #{enName,jdbcType=VARCHAR},
+            </if>
+            <if test="cnName != null">
+                CN_NAME = #{cnName,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                PROVINCE = #{province,jdbcType=BIGINT},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.City">
+        update c_city
+        set EN_NAME = #{enName,jdbcType=VARCHAR},
         CN_NAME = #{cnName,jdbcType=VARCHAR},
-      </if>
-      <if test="province != null">
-        PROVINCE = #{province,jdbcType=BIGINT},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.City">
-    update c_city
-    set EN_NAME = #{enName,jdbcType=VARCHAR},
-      CN_NAME = #{cnName,jdbcType=VARCHAR},
-      PROVINCE = #{province,jdbcType=BIGINT}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
+        PROVINCE = #{province,jdbcType=BIGINT}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

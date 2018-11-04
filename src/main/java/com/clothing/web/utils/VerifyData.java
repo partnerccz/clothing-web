@@ -10,6 +10,7 @@ package com.clothing.web.utils;
 public class VerifyData {
     /**
      * 判断整形数据是否为空或者为零
+     *
      * @param data
      * @return
      */
@@ -22,6 +23,7 @@ public class VerifyData {
 
     /**
      * 判断长整型是否为零或者为空
+     *
      * @param data
      * @return
      */
@@ -41,6 +43,7 @@ public class VerifyData {
 
     /**
      * 判断字符串是否为空或者空字符串
+     *
      * @param str
      * @return
      */

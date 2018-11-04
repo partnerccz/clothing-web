@@ -15,6 +15,7 @@ import java.util.Map;
 public interface ProductService {
     /**
      * 获取商品分页数据
+     *
      * @param pageNum
      * @param pageSize
      * @return

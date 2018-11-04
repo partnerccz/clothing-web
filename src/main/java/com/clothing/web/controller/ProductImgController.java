@@ -32,6 +32,7 @@ public class ProductImgController {
 
     @Autowired
     private ProductImgService productImgService;
+
     @GetMapping("/getProductPage")
     public ResponseEntity getProductPage(Integer productId) {
         try {

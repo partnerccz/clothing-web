@@ -1,259 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clothing.web.dao.OrderMapper">
-  <resultMap id="BaseResultMap" type="com.clothing.web.model.Order">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="u_id" jdbcType="INTEGER" property="uId" />
-    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
-    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
-    <result column="pay_need_money" jdbcType="DECIMAL" property="payNeedMoney" />
-    <result column="pay_total_money" jdbcType="DECIMAL" property="payTotalMoney" />
-    <result column="pay_callback" jdbcType="VARCHAR" property="payCallback" />
-    <result column="pay_success" jdbcType="INTEGER" property="paySuccess" />
-    <result column="buy_uid" jdbcType="INTEGER" property="buyUid" />
-    <result column="delivery_id" jdbcType="INTEGER" property="deliveryId" />
-    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
-    <result column="refund_status" jdbcType="INTEGER" property="refundStatus" />
-    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
-    <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
-    <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, code, u_id, order_status, pay_status, pay_need_money, pay_total_money, pay_callback, 
-    pay_success, buy_uid, delivery_id, pay_time, refund_status, delivery_time, refund_time, 
-    create_time, update_time, cancel_time, cancel_reason
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from b_order
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from b_order
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.clothing.web.model.Order">
-    insert into b_order (id, code, u_id, 
-      order_status, pay_status, pay_need_money, 
-      pay_total_money, pay_callback, pay_success, 
-      buy_uid, delivery_id, pay_time, 
-      refund_status, delivery_time, refund_time, 
-      create_time, update_time, cancel_time, 
-      cancel_reason)
-    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER}, 
-      #{orderStatus,jdbcType=TINYINT}, #{payStatus,jdbcType=TINYINT}, #{payNeedMoney,jdbcType=DECIMAL}, 
-      #{payTotalMoney,jdbcType=DECIMAL}, #{payCallback,jdbcType=VARCHAR}, #{paySuccess,jdbcType=INTEGER}, 
-      #{buyUid,jdbcType=INTEGER}, #{deliveryId,jdbcType=INTEGER}, #{payTime,jdbcType=TIMESTAMP}, 
-      #{refundStatus,jdbcType=INTEGER}, #{deliveryTime,jdbcType=TIMESTAMP}, #{refundTime,jdbcType=TIMESTAMP}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{cancelTime,jdbcType=TIMESTAMP}, 
-      #{cancelReason,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.clothing.web.model.Order">
-    insert into b_order
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="code != null">
-        code,
-      </if>
-      <if test="uId != null">
-        u_id,
-      </if>
-      <if test="orderStatus != null">
-        order_status,
-      </if>
-      <if test="payStatus != null">
-        pay_status,
-      </if>
-      <if test="payNeedMoney != null">
-        pay_need_money,
-      </if>
-      <if test="payTotalMoney != null">
-        pay_total_money,
-      </if>
-      <if test="payCallback != null">
-        pay_callback,
-      </if>
-      <if test="paySuccess != null">
-        pay_success,
-      </if>
-      <if test="buyUid != null">
-        buy_uid,
-      </if>
-      <if test="deliveryId != null">
-        delivery_id,
-      </if>
-      <if test="payTime != null">
-        pay_time,
-      </if>
-      <if test="refundStatus != null">
-        refund_status,
-      </if>
-      <if test="deliveryTime != null">
-        delivery_time,
-      </if>
-      <if test="refundTime != null">
-        refund_time,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="cancelTime != null">
-        cancel_time,
-      </if>
-      <if test="cancelReason != null">
-        cancel_reason,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="uId != null">
-        #{uId,jdbcType=INTEGER},
-      </if>
-      <if test="orderStatus != null">
-        #{orderStatus,jdbcType=TINYINT},
-      </if>
-      <if test="payStatus != null">
-        #{payStatus,jdbcType=TINYINT},
-      </if>
-      <if test="payNeedMoney != null">
-        #{payNeedMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="payTotalMoney != null">
-        #{payTotalMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="payCallback != null">
-        #{payCallback,jdbcType=VARCHAR},
-      </if>
-      <if test="paySuccess != null">
-        #{paySuccess,jdbcType=INTEGER},
-      </if>
-      <if test="buyUid != null">
-        #{buyUid,jdbcType=INTEGER},
-      </if>
-      <if test="deliveryId != null">
-        #{deliveryId,jdbcType=INTEGER},
-      </if>
-      <if test="payTime != null">
-        #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="refundStatus != null">
-        #{refundStatus,jdbcType=INTEGER},
-      </if>
-      <if test="deliveryTime != null">
-        #{deliveryTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="refundTime != null">
-        #{refundTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cancelTime != null">
-        #{cancelTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cancelReason != null">
-        #{cancelReason,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.Order">
-    update b_order
-    <set>
-      <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="uId != null">
+    <resultMap id="BaseResultMap" type="com.clothing.web.model.Order">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="u_id" jdbcType="INTEGER" property="uId"/>
+        <result column="order_status" jdbcType="TINYINT" property="orderStatus"/>
+        <result column="pay_status" jdbcType="TINYINT" property="payStatus"/>
+        <result column="pay_need_money" jdbcType="DECIMAL" property="payNeedMoney"/>
+        <result column="pay_total_money" jdbcType="DECIMAL" property="payTotalMoney"/>
+        <result column="pay_callback" jdbcType="VARCHAR" property="payCallback"/>
+        <result column="pay_success" jdbcType="INTEGER" property="paySuccess"/>
+        <result column="buy_uid" jdbcType="INTEGER" property="buyUid"/>
+        <result column="delivery_id" jdbcType="INTEGER" property="deliveryId"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="refund_status" jdbcType="INTEGER" property="refundStatus"/>
+        <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime"/>
+        <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime"/>
+        <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, code, u_id, order_status, pay_status, pay_need_money, pay_total_money, pay_callback,
+        pay_success, buy_uid, delivery_id, pay_time, refund_status, delivery_time, refund_time,
+        create_time, update_time, cancel_time, cancel_reason
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from b_order
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from b_order
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.clothing.web.model.Order">
+        insert into b_order (id, code, u_id,
+        order_status, pay_status, pay_need_money,
+        pay_total_money, pay_callback, pay_success,
+        buy_uid, delivery_id, pay_time,
+        refund_status, delivery_time, refund_time,
+        create_time, update_time, cancel_time,
+        cancel_reason)
+        values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER},
+        #{orderStatus,jdbcType=TINYINT}, #{payStatus,jdbcType=TINYINT}, #{payNeedMoney,jdbcType=DECIMAL},
+        #{payTotalMoney,jdbcType=DECIMAL}, #{payCallback,jdbcType=VARCHAR}, #{paySuccess,jdbcType=INTEGER},
+        #{buyUid,jdbcType=INTEGER}, #{deliveryId,jdbcType=INTEGER}, #{payTime,jdbcType=TIMESTAMP},
+        #{refundStatus,jdbcType=INTEGER}, #{deliveryTime,jdbcType=TIMESTAMP}, #{refundTime,jdbcType=TIMESTAMP},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{cancelTime,jdbcType=TIMESTAMP},
+        #{cancelReason,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.clothing.web.model.Order">
+        insert into b_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="uId != null">
+                u_id,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="payStatus != null">
+                pay_status,
+            </if>
+            <if test="payNeedMoney != null">
+                pay_need_money,
+            </if>
+            <if test="payTotalMoney != null">
+                pay_total_money,
+            </if>
+            <if test="payCallback != null">
+                pay_callback,
+            </if>
+            <if test="paySuccess != null">
+                pay_success,
+            </if>
+            <if test="buyUid != null">
+                buy_uid,
+            </if>
+            <if test="deliveryId != null">
+                delivery_id,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="refundStatus != null">
+                refund_status,
+            </if>
+            <if test="deliveryTime != null">
+                delivery_time,
+            </if>
+            <if test="refundTime != null">
+                refund_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="cancelTime != null">
+                cancel_time,
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="uId != null">
+                #{uId,jdbcType=INTEGER},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=TINYINT},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=TINYINT},
+            </if>
+            <if test="payNeedMoney != null">
+                #{payNeedMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="payTotalMoney != null">
+                #{payTotalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="payCallback != null">
+                #{payCallback,jdbcType=VARCHAR},
+            </if>
+            <if test="paySuccess != null">
+                #{paySuccess,jdbcType=INTEGER},
+            </if>
+            <if test="buyUid != null">
+                #{buyUid,jdbcType=INTEGER},
+            </if>
+            <if test="deliveryId != null">
+                #{deliveryId,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="refundStatus != null">
+                #{refundStatus,jdbcType=INTEGER},
+            </if>
+            <if test="deliveryTime != null">
+                #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="refundTime != null">
+                #{refundTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelTime != null">
+                #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelReason != null">
+                #{cancelReason,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.Order">
+        update b_order
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="uId != null">
+                u_id = #{uId,jdbcType=INTEGER},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=TINYINT},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=TINYINT},
+            </if>
+            <if test="payNeedMoney != null">
+                pay_need_money = #{payNeedMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="payTotalMoney != null">
+                pay_total_money = #{payTotalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="payCallback != null">
+                pay_callback = #{payCallback,jdbcType=VARCHAR},
+            </if>
+            <if test="paySuccess != null">
+                pay_success = #{paySuccess,jdbcType=INTEGER},
+            </if>
+            <if test="buyUid != null">
+                buy_uid = #{buyUid,jdbcType=INTEGER},
+            </if>
+            <if test="deliveryId != null">
+                delivery_id = #{deliveryId,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="refundStatus != null">
+                refund_status = #{refundStatus,jdbcType=INTEGER},
+            </if>
+            <if test="deliveryTime != null">
+                delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="refundTime != null">
+                refund_time = #{refundTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelTime != null">
+                cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelReason != null">
+                cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.Order">
+        update b_order
+        set code = #{code,jdbcType=VARCHAR},
         u_id = #{uId,jdbcType=INTEGER},
-      </if>
-      <if test="orderStatus != null">
         order_status = #{orderStatus,jdbcType=TINYINT},
-      </if>
-      <if test="payStatus != null">
         pay_status = #{payStatus,jdbcType=TINYINT},
-      </if>
-      <if test="payNeedMoney != null">
         pay_need_money = #{payNeedMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="payTotalMoney != null">
         pay_total_money = #{payTotalMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="payCallback != null">
         pay_callback = #{payCallback,jdbcType=VARCHAR},
-      </if>
-      <if test="paySuccess != null">
         pay_success = #{paySuccess,jdbcType=INTEGER},
-      </if>
-      <if test="buyUid != null">
         buy_uid = #{buyUid,jdbcType=INTEGER},
-      </if>
-      <if test="deliveryId != null">
         delivery_id = #{deliveryId,jdbcType=INTEGER},
-      </if>
-      <if test="payTime != null">
         pay_time = #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="refundStatus != null">
         refund_status = #{refundStatus,jdbcType=INTEGER},
-      </if>
-      <if test="deliveryTime != null">
         delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="refundTime != null">
         refund_time = #{refundTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cancelTime != null">
         cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cancelReason != null">
-        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.Order">
-    update b_order
-    set code = #{code,jdbcType=VARCHAR},
-      u_id = #{uId,jdbcType=INTEGER},
-      order_status = #{orderStatus,jdbcType=TINYINT},
-      pay_status = #{payStatus,jdbcType=TINYINT},
-      pay_need_money = #{payNeedMoney,jdbcType=DECIMAL},
-      pay_total_money = #{payTotalMoney,jdbcType=DECIMAL},
-      pay_callback = #{payCallback,jdbcType=VARCHAR},
-      pay_success = #{paySuccess,jdbcType=INTEGER},
-      buy_uid = #{buyUid,jdbcType=INTEGER},
-      delivery_id = #{deliveryId,jdbcType=INTEGER},
-      pay_time = #{payTime,jdbcType=TIMESTAMP},
-      refund_status = #{refundStatus,jdbcType=INTEGER},
-      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
-      refund_time = #{refundTime,jdbcType=TIMESTAMP},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
-      cancel_reason = #{cancelReason,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

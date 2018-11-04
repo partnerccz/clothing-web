@@ -21,6 +21,7 @@ public interface ProductStandardMapper {
 
     /**
      * 根据ID查询商品详情
+     *
      * @param psId
      * @return
      */

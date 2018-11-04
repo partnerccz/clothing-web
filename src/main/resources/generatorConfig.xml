@@ -5,9 +5,9 @@
 
 <generatorConfiguration>
 
-    <properties resource="application.properties" />
+    <properties resource="application.properties"/>
 
-    <classPathEntry location="${jdbc.location}" />
+    <classPathEntry location="${jdbc.location}"/>
 
     <context id="Tables" targetRuntime="MyBatis3">
 
@@ -32,182 +32,182 @@
          NUMERIC 类型解析为java.math.BigDecimal -->
         <javaTypeResolver>
             <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
-            <property name="forceBigDecimals" value="false" />
+            <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
         <!-- 生成实体类地址 -->
         <javaModelGenerator targetPackage="com.clothing.web.model" targetProject="src/main/java">
             <!-- 从数据库返回的值被清理前后的空格 -->
-            <property name="trimStrings" value="true" />
+            <property name="trimStrings" value="true"/>
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </javaModelGenerator>
 
         <!-- 生成mapper xml文件 -->
-        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- 生成mapper xml对应Client-->
         <javaClientGenerator targetPackage="com.clothing.web.dao" targetProject="src/main/java" type="XMLMAPPER">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!-- 配置表信息 -->
         <!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample
             是否生成 example类 -->
         <!--<table schema="clothing" tableName="a_menu"-->
-            <!--domainObjectName="Menu" enableCountByExample="false"-->
-            <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-            <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Menu" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="a_param"-->
-               <!--domainObjectName="Param" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Param" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="a_permission"-->
-               <!--domainObjectName="Permission" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Permission" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="a_role"-->
-               <!--domainObjectName="Role" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Role" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="a_role_menu"-->
-               <!--domainObjectName="RoleMenu" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="RoleMenu" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="a_role_permission"-->
-               <!--domainObjectName="RolePermission" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="RolePermission" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="a_user"-->
-               <!--domainObjectName="User" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="User" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="a_user_role"-->
-               <!--domainObjectName="UserRole" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="UserRole" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!---->
         <!--<table schema="clothing" tableName="b_delivery"-->
-               <!--domainObjectName="Delivery" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Delivery" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_member"-->
-               <!--domainObjectName="Member" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Member" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_member_charging_record"-->
-               <!--domainObjectName="MemberChargingRecord" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="MemberChargingRecord" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_member_recharge_record"-->
-               <!--domainObjectName="MemberRechargeRecord" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="MemberRechargeRecord" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_member_wallet"-->
-               <!--domainObjectName="MemberWallet" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="MemberWallet" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_order"-->
-               <!--domainObjectName="Order" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Order" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_order_detail"-->
-               <!--domainObjectName="OrderDetail" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="OrderDetail" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_product"-->
-               <!--domainObjectName="Product" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Product" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_product_img"-->
-               <!--domainObjectName="ProductImg" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="ProductImg" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_product_keyword"-->
-               <!--domainObjectName="ProductKeyword" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="ProductKeyword" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_product_recommend"-->
-               <!--domainObjectName="ProductRecommend" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="ProductRecommend" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_product_standard"-->
-               <!--domainObjectName="ProductStandard" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="ProductStandard" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="b_type"-->
-               <!--domainObjectName="Type" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Type" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="c_area"-->
-               <!--domainObjectName="Area" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Area" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="c_city"-->
-               <!--domainObjectName="City" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="City" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="c_country"-->
-               <!--domainObjectName="Country" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Country" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="clothing" tableName="c_province"-->
-               <!--domainObjectName="Province" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--domainObjectName="Province" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
-     <!--   <table schema="clothing" tableName="b_banner"
-               domainObjectName="Banner" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>-->
-           <!--<table schema="clothing" tableName="b_cart_product"-->
-               <!--domainObjectName="CartProduct" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--   <table schema="clothing" tableName="b_banner"
+                  domainObjectName="Banner" enableCountByExample="false"
+                  enableDeleteByExample="false" enableSelectByExample="false"
+                  enableUpdateByExample="false">
+           </table>-->
+        <!--<table schema="clothing" tableName="b_cart_product"-->
+        <!--domainObjectName="CartProduct" enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <table schema="clothing" tableName="b_product_standard_param"
-        domainObjectName="ProductStandardParam" enableCountByExample="false"
-        enableDeleteByExample="false" enableSelectByExample="false"
-        enableUpdateByExample="false">
+               domainObjectName="ProductStandardParam" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
         <table schema="clothing" tableName="b_standard_size"
-        domainObjectName="StandardSize" enableCountByExample="false"
-        enableDeleteByExample="false" enableSelectByExample="false"
-        enableUpdateByExample="false">
+               domainObjectName="StandardSize" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
         <table schema="clothing" tableName="b_standard_color"
-        domainObjectName="StandardColor" enableCountByExample="false"
-        enableDeleteByExample="false" enableSelectByExample="false"
-        enableUpdateByExample="false">
+               domainObjectName="StandardColor" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
     </context>
 </generatorConfiguration>

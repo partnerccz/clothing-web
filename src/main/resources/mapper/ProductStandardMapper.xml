@@ -1,321 +1,321 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clothing.web.dao.ProductStandardMapper">
-  <resultMap id="BaseResultMap" type="com.clothing.web.model.ProductStandard">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
-    <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
-    <result column="sell_price" jdbcType="DECIMAL" property="sellPrice" />
-    <result column="cost_price" jdbcType="DECIMAL" property="costPrice" />
-    <result column="shipping_fee" jdbcType="DECIMAL" property="shippingFee" />
-    <result column="carton_weight" jdbcType="DOUBLE" property="cartonWeight" />
-    <result column="purchase_quantity_min" jdbcType="INTEGER" property="purchaseQuantityMin" />
-    <result column="purchase_quantity_max" jdbcType="INTEGER" property="purchaseQuantityMax" />
-    <result column="buy_start_time" jdbcType="TIMESTAMP" property="buyStartTime" />
-    <result column="buy_end_time" jdbcType="TIMESTAMP" property="buyEndTime" />
-    <result column="sort_purchase" jdbcType="INTEGER" property="sortPurchase" />
-    <result column="sort_sold_out" jdbcType="INTEGER" property="sortSoldOut" />
-    <result column="sort_split" jdbcType="INTEGER" property="sortSplit" />
-    <result column="stock" jdbcType="INTEGER" property="stock" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="is_default" jdbcType="TINYINT" property="isDefault" />
-    <result column="purchaser_uid" jdbcType="INTEGER" property="purchaserUid" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, product_id, name, sub_title, original_price, sell_price, cost_price, shipping_fee, 
-    carton_weight, purchase_quantity_min, purchase_quantity_max, buy_start_time, buy_end_time, 
-    sort_purchase, sort_sold_out, sort_split, stock, status, is_default, purchaser_uid, 
-    create_time, update_time
-  </sql>
-  <select id="selectProductDetailById" parameterType="java.lang.Integer" resultType="java.util.Map">
-    SELECT
-      p.id AS pId,
-      p.`name` as pName,
-      p.type as type,
-      p.brand as brand,
-      p.des as des,
-      p.total_sell_num as total_sell_num,
-      p.week_sell_num as week_sell_num,
-      ps.sell_price as sell_price,
-      ps.original_price as original_price,
-      ps.shipping_fee as shipping_fee,
-      ps.carton_weight as carton_weight,
-      ps.purchase_quantity_min as purchase_quantity_min,
-      ps.purchase_quantity_max as purchase_quantity_max,
-      ps.buy_start_time as buy_start_time,
-      ps.buy_end_time as buy_end_time,
-      ps.sub_title as sub_title,
-      ps.`name` as psName,
-      ps.id as psId
-  FROM
-      b_product p
-  LEFT JOIN b_product_standard ps ON p.id = ps.product_id
-  WHERE 1=1
-  AND ps.id = #{psId}
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from b_product_standard
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from b_product_standard
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.clothing.web.model.ProductStandard">
-    insert into b_product_standard (id, product_id, name, 
-      sub_title, original_price, sell_price, 
-      cost_price, shipping_fee, carton_weight, 
-      purchase_quantity_min, purchase_quantity_max, 
-      buy_start_time, buy_end_time, sort_purchase, 
-      sort_sold_out, sort_split, stock, 
-      status, is_default, purchaser_uid, 
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{subTitle,jdbcType=VARCHAR}, #{originalPrice,jdbcType=DECIMAL}, #{sellPrice,jdbcType=DECIMAL}, 
-      #{costPrice,jdbcType=DECIMAL}, #{shippingFee,jdbcType=DECIMAL}, #{cartonWeight,jdbcType=DOUBLE}, 
-      #{purchaseQuantityMin,jdbcType=INTEGER}, #{purchaseQuantityMax,jdbcType=INTEGER}, 
-      #{buyStartTime,jdbcType=TIMESTAMP}, #{buyEndTime,jdbcType=TIMESTAMP}, #{sortPurchase,jdbcType=INTEGER}, 
-      #{sortSoldOut,jdbcType=INTEGER}, #{sortSplit,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{isDefault,jdbcType=TINYINT}, #{purchaserUid,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.clothing.web.model.ProductStandard">
-    insert into b_product_standard
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="productId != null">
-        product_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="subTitle != null">
-        sub_title,
-      </if>
-      <if test="originalPrice != null">
-        original_price,
-      </if>
-      <if test="sellPrice != null">
-        sell_price,
-      </if>
-      <if test="costPrice != null">
-        cost_price,
-      </if>
-      <if test="shippingFee != null">
-        shipping_fee,
-      </if>
-      <if test="cartonWeight != null">
-        carton_weight,
-      </if>
-      <if test="purchaseQuantityMin != null">
-        purchase_quantity_min,
-      </if>
-      <if test="purchaseQuantityMax != null">
-        purchase_quantity_max,
-      </if>
-      <if test="buyStartTime != null">
-        buy_start_time,
-      </if>
-      <if test="buyEndTime != null">
-        buy_end_time,
-      </if>
-      <if test="sortPurchase != null">
-        sort_purchase,
-      </if>
-      <if test="sortSoldOut != null">
-        sort_sold_out,
-      </if>
-      <if test="sortSplit != null">
-        sort_split,
-      </if>
-      <if test="stock != null">
-        stock,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="isDefault != null">
-        is_default,
-      </if>
-      <if test="purchaserUid != null">
-        purchaser_uid,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="productId != null">
-        #{productId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="subTitle != null">
-        #{subTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="originalPrice != null">
-        #{originalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="sellPrice != null">
-        #{sellPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="costPrice != null">
-        #{costPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="shippingFee != null">
-        #{shippingFee,jdbcType=DECIMAL},
-      </if>
-      <if test="cartonWeight != null">
-        #{cartonWeight,jdbcType=DOUBLE},
-      </if>
-      <if test="purchaseQuantityMin != null">
-        #{purchaseQuantityMin,jdbcType=INTEGER},
-      </if>
-      <if test="purchaseQuantityMax != null">
-        #{purchaseQuantityMax,jdbcType=INTEGER},
-      </if>
-      <if test="buyStartTime != null">
-        #{buyStartTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="buyEndTime != null">
-        #{buyEndTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sortPurchase != null">
-        #{sortPurchase,jdbcType=INTEGER},
-      </if>
-      <if test="sortSoldOut != null">
-        #{sortSoldOut,jdbcType=INTEGER},
-      </if>
-      <if test="sortSplit != null">
-        #{sortSplit,jdbcType=INTEGER},
-      </if>
-      <if test="stock != null">
-        #{stock,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="isDefault != null">
-        #{isDefault,jdbcType=TINYINT},
-      </if>
-      <if test="purchaserUid != null">
-        #{purchaserUid,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.ProductStandard">
-    update b_product_standard
-    <set>
-      <if test="productId != null">
-        product_id = #{productId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
+    <resultMap id="BaseResultMap" type="com.clothing.web.model.ProductStandard">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="product_id" jdbcType="INTEGER" property="productId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sub_title" jdbcType="VARCHAR" property="subTitle"/>
+        <result column="original_price" jdbcType="DECIMAL" property="originalPrice"/>
+        <result column="sell_price" jdbcType="DECIMAL" property="sellPrice"/>
+        <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+        <result column="shipping_fee" jdbcType="DECIMAL" property="shippingFee"/>
+        <result column="carton_weight" jdbcType="DOUBLE" property="cartonWeight"/>
+        <result column="purchase_quantity_min" jdbcType="INTEGER" property="purchaseQuantityMin"/>
+        <result column="purchase_quantity_max" jdbcType="INTEGER" property="purchaseQuantityMax"/>
+        <result column="buy_start_time" jdbcType="TIMESTAMP" property="buyStartTime"/>
+        <result column="buy_end_time" jdbcType="TIMESTAMP" property="buyEndTime"/>
+        <result column="sort_purchase" jdbcType="INTEGER" property="sortPurchase"/>
+        <result column="sort_sold_out" jdbcType="INTEGER" property="sortSoldOut"/>
+        <result column="sort_split" jdbcType="INTEGER" property="sortSplit"/>
+        <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="is_default" jdbcType="TINYINT" property="isDefault"/>
+        <result column="purchaser_uid" jdbcType="INTEGER" property="purchaserUid"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, product_id, name, sub_title, original_price, sell_price, cost_price, shipping_fee,
+        carton_weight, purchase_quantity_min, purchase_quantity_max, buy_start_time, buy_end_time,
+        sort_purchase, sort_sold_out, sort_split, stock, status, is_default, purchaser_uid,
+        create_time, update_time
+    </sql>
+    <select id="selectProductDetailById" parameterType="java.lang.Integer" resultType="java.util.Map">
+        SELECT
+        p.id AS pId,
+        p.`name` as pName,
+        p.type as type,
+        p.brand as brand,
+        p.des as des,
+        p.total_sell_num as total_sell_num,
+        p.week_sell_num as week_sell_num,
+        ps.sell_price as sell_price,
+        ps.original_price as original_price,
+        ps.shipping_fee as shipping_fee,
+        ps.carton_weight as carton_weight,
+        ps.purchase_quantity_min as purchase_quantity_min,
+        ps.purchase_quantity_max as purchase_quantity_max,
+        ps.buy_start_time as buy_start_time,
+        ps.buy_end_time as buy_end_time,
+        ps.sub_title as sub_title,
+        ps.`name` as psName,
+        ps.id as psId
+        FROM
+        b_product p
+        LEFT JOIN b_product_standard ps ON p.id = ps.product_id
+        WHERE 1=1
+        AND ps.id = #{psId}
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from b_product_standard
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from b_product_standard
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.clothing.web.model.ProductStandard">
+        insert into b_product_standard (id, product_id, name,
+        sub_title, original_price, sell_price,
+        cost_price, shipping_fee, carton_weight,
+        purchase_quantity_min, purchase_quantity_max,
+        buy_start_time, buy_end_time, sort_purchase,
+        sort_sold_out, sort_split, stock,
+        status, is_default, purchaser_uid,
+        create_time, update_time)
+        values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{subTitle,jdbcType=VARCHAR}, #{originalPrice,jdbcType=DECIMAL}, #{sellPrice,jdbcType=DECIMAL},
+        #{costPrice,jdbcType=DECIMAL}, #{shippingFee,jdbcType=DECIMAL}, #{cartonWeight,jdbcType=DOUBLE},
+        #{purchaseQuantityMin,jdbcType=INTEGER}, #{purchaseQuantityMax,jdbcType=INTEGER},
+        #{buyStartTime,jdbcType=TIMESTAMP}, #{buyEndTime,jdbcType=TIMESTAMP}, #{sortPurchase,jdbcType=INTEGER},
+        #{sortSoldOut,jdbcType=INTEGER}, #{sortSplit,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER},
+        #{status,jdbcType=INTEGER}, #{isDefault,jdbcType=TINYINT}, #{purchaserUid,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.clothing.web.model.ProductStandard">
+        insert into b_product_standard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="subTitle != null">
+                sub_title,
+            </if>
+            <if test="originalPrice != null">
+                original_price,
+            </if>
+            <if test="sellPrice != null">
+                sell_price,
+            </if>
+            <if test="costPrice != null">
+                cost_price,
+            </if>
+            <if test="shippingFee != null">
+                shipping_fee,
+            </if>
+            <if test="cartonWeight != null">
+                carton_weight,
+            </if>
+            <if test="purchaseQuantityMin != null">
+                purchase_quantity_min,
+            </if>
+            <if test="purchaseQuantityMax != null">
+                purchase_quantity_max,
+            </if>
+            <if test="buyStartTime != null">
+                buy_start_time,
+            </if>
+            <if test="buyEndTime != null">
+                buy_end_time,
+            </if>
+            <if test="sortPurchase != null">
+                sort_purchase,
+            </if>
+            <if test="sortSoldOut != null">
+                sort_sold_out,
+            </if>
+            <if test="sortSplit != null">
+                sort_split,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="isDefault != null">
+                is_default,
+            </if>
+            <if test="purchaserUid != null">
+                purchaser_uid,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="subTitle != null">
+                #{subTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="originalPrice != null">
+                #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="sellPrice != null">
+                #{sellPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="costPrice != null">
+                #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="shippingFee != null">
+                #{shippingFee,jdbcType=DECIMAL},
+            </if>
+            <if test="cartonWeight != null">
+                #{cartonWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="purchaseQuantityMin != null">
+                #{purchaseQuantityMin,jdbcType=INTEGER},
+            </if>
+            <if test="purchaseQuantityMax != null">
+                #{purchaseQuantityMax,jdbcType=INTEGER},
+            </if>
+            <if test="buyStartTime != null">
+                #{buyStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="buyEndTime != null">
+                #{buyEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortPurchase != null">
+                #{sortPurchase,jdbcType=INTEGER},
+            </if>
+            <if test="sortSoldOut != null">
+                #{sortSoldOut,jdbcType=INTEGER},
+            </if>
+            <if test="sortSplit != null">
+                #{sortSplit,jdbcType=INTEGER},
+            </if>
+            <if test="stock != null">
+                #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault,jdbcType=TINYINT},
+            </if>
+            <if test="purchaserUid != null">
+                #{purchaserUid,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothing.web.model.ProductStandard">
+        update b_product_standard
+        <set>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="subTitle != null">
+                sub_title = #{subTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="originalPrice != null">
+                original_price = #{originalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="sellPrice != null">
+                sell_price = #{sellPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="shippingFee != null">
+                shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+            </if>
+            <if test="cartonWeight != null">
+                carton_weight = #{cartonWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="purchaseQuantityMin != null">
+                purchase_quantity_min = #{purchaseQuantityMin,jdbcType=INTEGER},
+            </if>
+            <if test="purchaseQuantityMax != null">
+                purchase_quantity_max = #{purchaseQuantityMax,jdbcType=INTEGER},
+            </if>
+            <if test="buyStartTime != null">
+                buy_start_time = #{buyStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="buyEndTime != null">
+                buy_end_time = #{buyEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortPurchase != null">
+                sort_purchase = #{sortPurchase,jdbcType=INTEGER},
+            </if>
+            <if test="sortSoldOut != null">
+                sort_sold_out = #{sortSoldOut,jdbcType=INTEGER},
+            </if>
+            <if test="sortSplit != null">
+                sort_split = #{sortSplit,jdbcType=INTEGER},
+            </if>
+            <if test="stock != null">
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault,jdbcType=TINYINT},
+            </if>
+            <if test="purchaserUid != null">
+                purchaser_uid = #{purchaserUid,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.ProductStandard">
+        update b_product_standard
+        set product_id = #{productId,jdbcType=INTEGER},
         name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="subTitle != null">
         sub_title = #{subTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="originalPrice != null">
         original_price = #{originalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="sellPrice != null">
         sell_price = #{sellPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="costPrice != null">
         cost_price = #{costPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="shippingFee != null">
         shipping_fee = #{shippingFee,jdbcType=DECIMAL},
-      </if>
-      <if test="cartonWeight != null">
         carton_weight = #{cartonWeight,jdbcType=DOUBLE},
-      </if>
-      <if test="purchaseQuantityMin != null">
         purchase_quantity_min = #{purchaseQuantityMin,jdbcType=INTEGER},
-      </if>
-      <if test="purchaseQuantityMax != null">
         purchase_quantity_max = #{purchaseQuantityMax,jdbcType=INTEGER},
-      </if>
-      <if test="buyStartTime != null">
         buy_start_time = #{buyStartTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="buyEndTime != null">
         buy_end_time = #{buyEndTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sortPurchase != null">
         sort_purchase = #{sortPurchase,jdbcType=INTEGER},
-      </if>
-      <if test="sortSoldOut != null">
         sort_sold_out = #{sortSoldOut,jdbcType=INTEGER},
-      </if>
-      <if test="sortSplit != null">
         sort_split = #{sortSplit,jdbcType=INTEGER},
-      </if>
-      <if test="stock != null">
         stock = #{stock,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
         status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="isDefault != null">
         is_default = #{isDefault,jdbcType=TINYINT},
-      </if>
-      <if test="purchaserUid != null">
         purchaser_uid = #{purchaserUid,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.clothing.web.model.ProductStandard">
-    update b_product_standard
-    set product_id = #{productId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      sub_title = #{subTitle,jdbcType=VARCHAR},
-      original_price = #{originalPrice,jdbcType=DECIMAL},
-      sell_price = #{sellPrice,jdbcType=DECIMAL},
-      cost_price = #{costPrice,jdbcType=DECIMAL},
-      shipping_fee = #{shippingFee,jdbcType=DECIMAL},
-      carton_weight = #{cartonWeight,jdbcType=DOUBLE},
-      purchase_quantity_min = #{purchaseQuantityMin,jdbcType=INTEGER},
-      purchase_quantity_max = #{purchaseQuantityMax,jdbcType=INTEGER},
-      buy_start_time = #{buyStartTime,jdbcType=TIMESTAMP},
-      buy_end_time = #{buyEndTime,jdbcType=TIMESTAMP},
-      sort_purchase = #{sortPurchase,jdbcType=INTEGER},
-      sort_sold_out = #{sortSoldOut,jdbcType=INTEGER},
-      sort_split = #{sortSplit,jdbcType=INTEGER},
-      stock = #{stock,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      is_default = #{isDefault,jdbcType=TINYINT},
-      purchaser_uid = #{purchaserUid,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

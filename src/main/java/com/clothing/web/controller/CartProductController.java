@@ -36,13 +36,14 @@ public class CartProductController {
 
     /**
      * 根据用户ID查询购物车信息
+     *
      * @param memberId
      * @param pageNum
      * @param pageSize
      * @return
      */
     @GetMapping("/getCartProductByMid")
-    public ResponseEntity getCartProductByMid(Integer memberId,Integer pageNum,Integer pageSize) {
+    public ResponseEntity getCartProductByMid(Integer memberId, Integer pageNum, Integer pageSize) {
         try {
             log.info("【购物车】  参数memberId={},pageNum={},pageSize={}", memberId, pageNum, pageSize);
             Page<Map> maps = cartProductService.selectCartProductByMid(memberId, pageNum, pageSize);
@@ -57,6 +58,7 @@ public class CartProductController {
 
     /**
      * 添加购物车
+     *
      * @param cartProduct
      * @return
      */
@@ -81,6 +83,7 @@ public class CartProductController {
 
     /**
      * 根据购物车ID删除购物信息
+     *
      * @param cartProductId 购物车ID
      * @return
      */
@@ -105,11 +108,12 @@ public class CartProductController {
 
     /**
      * 根据购物车ID删除购物信息
+     *
      * @param cartProductId 购物车ID
      * @return
      */
     @PostMapping("/modifyCartProductById")
-    public ResponseEntity modifyCartProductById(Integer cartProductId,Integer buyNum) {
+    public ResponseEntity modifyCartProductById(Integer cartProductId, Integer buyNum) {
         try {
             log.info("【购物车】 修改购物车，购物车buyNum={}", buyNum);
             CartProduct cartProduct = cartProductService.selectByPrimaryKey(cartProductId);

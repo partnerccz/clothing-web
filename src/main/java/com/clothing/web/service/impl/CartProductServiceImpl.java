@@ -56,10 +56,10 @@ public class CartProductServiceImpl implements CartProductService {
     @Override
     public Page<Map> selectCartProductByMid(Integer memberId, Integer pageNum, Integer pageSize) {
         if (VerifyData.intIsNotNullOrZero(pageNum)) {
-            pageNum =PageConstant.PAGE_NUM;
+            pageNum = PageConstant.PAGE_NUM;
         }
         if (VerifyData.intIsNotNullOrZero(pageSize)) {
-            pageSize =PageConstant.PAGE_SIZE;
+            pageSize = PageConstant.PAGE_SIZE;
         }
         PageHelper.startPage(pageNum, pageSize);
         return cartProductMapper.selectCartProductByMid(memberId);

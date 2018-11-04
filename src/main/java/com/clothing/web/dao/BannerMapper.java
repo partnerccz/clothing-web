@@ -21,6 +21,7 @@ public interface BannerMapper {
 
     /**
      * 根据分组键获取banner数据
+     *
      * @param groupKey
      * @return
      */

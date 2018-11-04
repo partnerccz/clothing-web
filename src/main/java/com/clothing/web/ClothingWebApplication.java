@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.clothing.web.dao.")
+@MapperScan("com.clothing.web.dao")
 public class ClothingWebApplication {
 
     public static void main(String[] args) {

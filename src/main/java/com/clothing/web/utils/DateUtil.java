@@ -15,7 +15,8 @@ import java.util.*;
  */
 public class DateUtil {
     public static final String HOUSE_KEY = "house";
-    public static  void main(String[] args) {
+
+    public static void main(String[] args) {
 //        getOrderBill(DateUtil.strToDate("2018-09-13 16:43:14", "yyyy-MM-dd HH:mm:ss"), new Date(),);
         if (true) {
             return;
@@ -32,10 +33,10 @@ public class DateUtil {
 //        System.out.println(substring);
 //        System.out.println(Integer.parseInt(substring));
 
-        Date date1=strToDate("2018-09-06 02:49:31","yyyy-MM-dd HH:mm:ss");
-        Date date2=strToDate("2018-09-06 18:05:38","yyyy-MM-dd HH:mm:ss");
+        Date date1 = strToDate("2018-09-06 02:49:31", "yyyy-MM-dd HH:mm:ss");
+        Date date2 = strToDate("2018-09-06 18:05:38", "yyyy-MM-dd HH:mm:ss");
 
-        Double orderBill = DateUtil.getOrderBill(date1, date2, 1, new Double(3),10D);
+        Double orderBill = DateUtil.getOrderBill(date1, date2, 1, new Double(3), 10D);
 
 //        Double plat = orderBill*0.2;
 //        Double provice = orderBill*0.3;
@@ -58,7 +59,7 @@ public class DateUtil {
             return;
         }
 
-        List<Map<String, Object>> hourEveryDay = getHourEveryDay(date1, date2,40);
+        List<Map<String, Object>> hourEveryDay = getHourEveryDay(date1, date2, 40);
 
         Date dateIntervalByMinute = getDateIntervalByMinute(new Date(), -5, "yyyy-MM-dd HH:mm:ss");
         System.out.println(dateIntervalByMinute);
@@ -71,7 +72,7 @@ public class DateUtil {
 
         System.out.println(getNextDay("2018-03-22 12:03:14", "1"));
         System.out.println(getNextDay("2018-03-22 12:03:14", "-2"));
-        int i = compare_date("2018-03-24 10:00:00", "2018-03-24 09:59:59","yyyy-MM-dd hh:mm:ss");
+        int i = compare_date("2018-03-24 10:00:00", "2018-03-24 09:59:59", "yyyy-MM-dd hh:mm:ss");
         System.out.println(i);
     }
 
@@ -95,28 +96,30 @@ public class DateUtil {
 
     /**
      * 根据传入的时间和要间隔的分钟，
-     * @param date 时间
+     *
+     * @param date           时间
      * @param intervalMinute 间隔
-     * @param pattern 时间格式
+     * @param pattern        时间格式
      * @return
      */
-    public static Date getDateIntervalByMinute(Date date, Integer intervalMinute,String pattern) {
-        SimpleDateFormat dft=new SimpleDateFormat(pattern);
-        Calendar  dar=Calendar.getInstance();
+    public static Date getDateIntervalByMinute(Date date, Integer intervalMinute, String pattern) {
+        SimpleDateFormat dft = new SimpleDateFormat(pattern);
+        Calendar dar = Calendar.getInstance();
         dar.setTime(date);
-        dar.add(Calendar.MINUTE,intervalMinute);
+        dar.add(Calendar.MINUTE, intervalMinute);
         System.out.println(dft.format(dar.getTime()));
         return dar.getTime();
     }
 
     /**
      * 获取两个时间的间隔小时数
+     *
      * @param pBeginTime
      * @param pEndTime
      * @param pattern
      * @return
      */
-    public static Long TimeDiff(String pBeginTime, String pEndTime,String pattern){
+    public static Long TimeDiff(String pBeginTime, String pEndTime, String pattern) {
 
         try {
             SimpleDateFormat format = new SimpleDateFormat(pattern);
@@ -134,12 +137,13 @@ public class DateUtil {
 
     /**
      * 获取两个时间的间隔小时数
+     *
      * @param pBeginTime
      * @param pEndTime
      * @param pattern
      * @return
      */
-    public static Long TimeDiff2(String pBeginTime, String pEndTime,String pattern){
+    public static Long TimeDiff2(String pBeginTime, String pEndTime, String pattern) {
 
         try {
             SimpleDateFormat format = new SimpleDateFormat(pattern);
@@ -148,7 +152,7 @@ public class DateUtil {
             Long day = (endL - beginL) / 86400000;
             Long hour = ((endL - beginL)) / 3600000;
             if ((endL - beginL) % 3600000 != 0) {
-                hour+=1;
+                hour += 1;
             }
             Long min = ((endL - beginL)) / 60000;
             return hour;
@@ -158,14 +162,14 @@ public class DateUtil {
         return new Long(0);
     }
 
-    public static Double getOrderBill(Date startDate, Date endDate, Integer intervalMinute,Double unitPrice,Double hightPrice) {
+    public static Double getOrderBill(Date startDate, Date endDate, Integer intervalMinute, Double unitPrice, Double hightPrice) {
         try {
             List<Map<String, Object>> hourEveryDay = getHourEveryDay(startDate, endDate, intervalMinute);
             if (hourEveryDay == null || hourEveryDay.size() <= 0) {
                 return new Double(0);
             }
             Double bill = new Double(0);
-            Double hightHouse = (new BigDecimal(hightPrice)).divide(new BigDecimal(unitPrice),1,BigDecimal.ROUND_HALF_UP).doubleValue();
+            Double hightHouse = (new BigDecimal(hightPrice)).divide(new BigDecimal(unitPrice), 1, BigDecimal.ROUND_HALF_UP).doubleValue();
 
             for (int i = 0; i < hourEveryDay.size(); i++) {
                 Map map = hourEveryDay.get(i);
@@ -174,10 +178,10 @@ public class DateUtil {
                 if (house > hightHouse) {
                     house = hightHouse;
                 }
-                bill+= unitPrice*house;
+                bill += unitPrice * house;
 //                bill += (new BigDecimal(unitPrice)).multiply(new BigDecimal(house)).longValue();
             }
-            return Double.parseDouble(String.format("%.1f",bill));
+            return Double.parseDouble(String.format("%.1f", bill));
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("计算费用报错！");
@@ -187,19 +191,20 @@ public class DateUtil {
 
     /**
      * 根据两个时间，算出这个时间段里的免费有多少个小时，并且加上免费时长
-     * @param startDate 开始时间
-     * @param endDate 结束时间
+     *
+     * @param startDate      开始时间
+     * @param endDate        结束时间
      * @param intervalMinute 间隔时长，单位是分钟
      * @return 返回每一天的时长
      */
-    public static List<Map<String, Object>> getHourEveryDay(Date startDate, Date endDate,Integer intervalMinute) {
+    public static List<Map<String, Object>> getHourEveryDay(Date startDate, Date endDate, Integer intervalMinute) {
         String pattern = "yyyy-MM-dd HH";
         String patternMinute = "yyyy-MM-dd HH:mm";
         String patternShort = "yyyy-MM-dd";
         String patternFull = "yyyy-MM-dd HH:mm:ss";
         Date convertStartDate = getDateIntervalByMinute(startDate, intervalMinute, patternMinute);
-        String startDateStrLong = getStringDate(convertStartDate,pattern);
-        String startDateStrShort = getStringDate(convertStartDate,patternShort);
+        String startDateStrLong = getStringDate(convertStartDate, pattern);
+        String startDateStrShort = getStringDate(convertStartDate, patternShort);
         String endDateStrLong = getStringDate(endDate, pattern);
         String endDateStrShort = getStringDate(endDate, patternShort);
         List<Map<String, Object>> mapList = new ArrayList<>();
@@ -210,8 +215,8 @@ public class DateUtil {
             mapList.add(map);
             return mapList;
         }
-        Long aLong = DateUtil.TimeDiff2(getStringDate(convertStartDate,patternMinute), getStringDate(endDate,patternMinute), patternMinute);
-        if (aLong<=10) {
+        Long aLong = DateUtil.TimeDiff2(getStringDate(convertStartDate, patternMinute), getStringDate(endDate, patternMinute), patternMinute);
+        if (aLong <= 10) {
             Map map = new HashMap();
             map.put(HOUSE_KEY, aLong);
             mapList.add(map);
@@ -219,41 +224,41 @@ public class DateUtil {
         }
         int count = 0;
         while (true) {
-            count ++;
+            count++;
             if (count == 1) {
-                int i = compare_date(endDateStrShort,startDateStrShort,  patternShort);
+                int i = compare_date(endDateStrShort, startDateStrShort, patternShort);
                 if (i > 0) {
-                    Long house = TimeDiff(startDateStrLong,(getNextDay(startDateStrLong,"1")).split(" ")[0] + " 00",pattern);
+                    Long house = TimeDiff(startDateStrLong, (getNextDay(startDateStrLong, "1")).split(" ")[0] + " 00", pattern);
                     Map<String, Object> map = new HashMap<>();
                     map.put(HOUSE_KEY, house);
                     mapList.add(map);
-                }else{
-                    Long house =new Long(0);
+                } else {
+                    Long house = new Long(0);
                     Integer endMinute = Integer.parseInt(getStringDate(endDate, patternFull).split(" ")[1].substring(3, 5));
                     house = TimeDiff(startDateStrLong, endDateStrLong, pattern);
-                    int result=compare_date(getStringDate(convertStartDate,patternFull), getStringDate(endDate,patternFull), patternFull);
-                    if (result!=0 && result!=1) {
-                        house+=1;
+                    int result = compare_date(getStringDate(convertStartDate, patternFull), getStringDate(endDate, patternFull), patternFull);
+                    if (result != 0 && result != 1) {
+                        house += 1;
                     }
                     Map map = new HashMap();
                     map.put(HOUSE_KEY, house);
                     mapList.add(map);
                     break;
                 }
-            }else {
-                startDateStrShort= getNextDay(startDateStrLong, "1");
+            } else {
+                startDateStrShort = getNextDay(startDateStrLong, "1");
                 startDateStrLong = startDateStrShort + " 00";
-                int resultCount = compare_date( endDateStrShort, startDateStrShort,patternShort);
+                int resultCount = compare_date(endDateStrShort, startDateStrShort, patternShort);
                 if (resultCount > 0) {
-                    Long house = TimeDiff((startDateStrLong.split(" "))[0] + " 00", getNextDay((startDateStrLong.split(" "))[0],"1") + " 00", pattern);
+                    Long house = TimeDiff((startDateStrLong.split(" "))[0] + " 00", getNextDay((startDateStrLong.split(" "))[0], "1") + " 00", pattern);
                     Map<String, Object> map = new HashMap<>();
                     map.put(HOUSE_KEY, 24);
                     mapList.add(map);
-                }else {
+                } else {
                     Integer endMinute = Integer.parseInt(getStringDate(endDate, patternFull).split(" ")[1].substring(3, 5));
                     Long house = TimeDiff((startDateStrLong.split(" "))[0] + " 00", endDateStrLong, pattern);
                     if (endMinute != 0) {
-                        house+=1;
+                        house += 1;
                     }
                     Map<String, Object> map = new HashMap<>();
                     map.put(HOUSE_KEY, house);
@@ -272,6 +277,7 @@ public class DateUtil {
 
     /**
      * 比较两个时间
+     *
      * @param dt1
      * @param dt2
      * @return 1 第一个比第二个时间大       0 反之
@@ -295,12 +301,13 @@ public class DateUtil {
 
     /**
      * 比较两个时间
+     *
      * @param DATE1
      * @param DATE2
      * @param pattern
      * @return 1 第一个比第二个时间大        0 反之
      */
-    public static int compare_date(String DATE1, String DATE2,String pattern) {
+    public static int compare_date(String DATE1, String DATE2, String pattern) {
         DateFormat df = new SimpleDateFormat(pattern);
         try {
             Date dt1 = df.parse(DATE1);
@@ -319,7 +326,6 @@ public class DateUtil {
         }
         return 0;
     }
-
 
 
     public static Long getTimestamp() {
@@ -465,7 +471,7 @@ public class DateUtil {
     /*
      * 将时间戳转换为时间
      */
-    public static String stampToDate(String s){
+    public static String stampToDate(String s) {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long lt = new Long(s);
