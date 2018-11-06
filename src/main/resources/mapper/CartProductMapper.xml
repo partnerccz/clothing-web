@@ -15,7 +15,7 @@
         id, member_id, product_standard_id, buy_num, remark, create_time, update_time, is_delete
     </sql>
     <select id="selectCartProductByMid" parameterType="java.lang.Integer" resultType="java.util.Map">
-        SELECT
+      SELECT
         cp.id as cart_id,
         cp.buy_num as buy_num,
         cp.create_time as create_time,
@@ -26,10 +26,17 @@
         ps.shipping_fee as shipping_fee,
         ps.purchase_quantity_min as purchase_quantity_min,
         ps.purchase_quantity_max as purchase_quantity_max,
-        (SELECT p.img from b_product p WHERE p.id = ps.product_id) as default_img
+        (SELECT p.img from b_product p WHERE p.id = ps.product_id) as default_img,
+				ss.id as standard_size_id,
+				sc.id as standard_color_id,
+				sc.`name` as standard_color_name,
+				ss.`name` as standard_size_name,
+				ss.size as standard_size_size
         FROM
         b_cart_product cp
         INNER JOIN b_product_standard ps on cp.product_standard_id = ps.id
+				LEFT JOIN b_standard_color sc on ps.standard_color_id = sc.id
+				LEFT JOIN b_standard_size ss on ps.standard_size_id = ss.id
         WHERE 1=1
         AND member_id = #{memberId}
         ORDER BY cp.create_time DESC

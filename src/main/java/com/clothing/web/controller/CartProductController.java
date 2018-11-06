@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,7 +49,15 @@ public class CartProductController {
         try {
             log.info("【购物车】  参数memberId={},pageNum={},pageSize={}", memberId, pageNum, pageSize);
             Page<Map> maps = cartProductService.selectCartProductByMid(memberId, pageNum, pageSize);
+            List<Map> results = maps.getResult();
+            List<Map> lists = new ArrayList<>();
+            for (int i = 0; i < results.size(); i++) {
+                Map map = results.get(i);
+                map.put("check", true);
+                lists.add(map);
+            }
             PageInfo pageInfo = new PageInfo(maps);
+            pageInfo.setList(lists);
             return ResponseEntity.ok(pageInfo);
         } catch (Exception e) {
             e.printStackTrace();
